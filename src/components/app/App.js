@@ -6,6 +6,8 @@ import CharList from "../charList/CharList";
 import CharInfo from "../charInfo/CharInfo";
 
 import decoration from "../../resources/img/vision.png";
+import ComicsList from "../comicsList/ComicsList";
+import AppBanner from "../appBanner/AppBanner";
 
 const App = () => {
   const [charId, setCharId] = useState(null);
@@ -18,12 +20,14 @@ const App = () => {
     <div className="app">
       <AppHeader />
       <main>
-        <RandomChar />
+        {/* <RandomChar />
         <div className="char__content">
           <CharList getCharId={getCharId} />
           <CharInfo charId={charId} />
         </div>
-        <img className="bg-decoration" src={decoration} alt="vision" />
+        <img className="bg-decoration" src={decoration} alt="vision" /> */}
+        <AppBanner />
+        <ComicsList />
       </main>
     </div>
   );

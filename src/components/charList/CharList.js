@@ -1,45 +1,32 @@
 import "./charList.scss";
 
 import { useState, useEffect, useRef } from "react";
-import MarvelService from "../../services/MarvelService";
+import useMarvelService from "../../services/MarvelService";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import Spinner from "../spinner/Spinner";
 
 const CharList = (props) => {
   const [charList, setCharList] = useState([]),
-    [loading, setLoading] = useState(true),
-    [error, setError] = useState(false),
     [newCharListLoading, setNewCharListLoading] = useState(false),
     [offset, setOffset] = useState(1540),
     [charEnded, setCharEnded] = useState(false);
 
-  const marvelService = new MarvelService();
+  const { loading, error, getAllCharacters } = useMarvelService();
 
   useEffect(() => {
-    onRequest();
+    onRequest(offset, true);
   }, []);
 
-  const onRequest = (offset) => {
-    onNewCharListLoading();
-    marvelService
-      .getAllCharacters(offset)
-      .then(onCharListLoaded)
-      .catch(onError);
-  };
-  const onNewCharListLoading = () => {
-    setNewCharListLoading(true);
-  };
-  const onCharListLoaded = (newCharList) => {
-    setCharList([...charList, ...newCharList]);
-    setLoading(false);
-    setNewCharListLoading(false);
-    setOffset(offset + 9);
-    setCharEnded(newCharList.length < 9);
+  const onRequest = (offset, initial) => {
+    initial ? setNewCharListLoading(false) : setNewCharListLoading(true);
+    getAllCharacters(offset).then(onCharListLoaded);
   };
 
-  const onError = () => {
-    setLoading(false);
-    setError(true);
+  const onCharListLoaded = (newCharList) => {
+    setCharList([...charList, ...newCharList]);
+    setNewCharListLoading(() => false);
+    setOffset(offset + 9);
+    setCharEnded(newCharList.length < 9);
   };
 
   const itemRefs = useRef([]);
@@ -91,7 +78,13 @@ const CharList = (props) => {
   const cards = makeCharCards(charList);
   return (
     <div className="char__list">
-      {error ? <ErrorMessage /> : loading ? <Spinner /> : cards}
+      {error ? (
+        <ErrorMessage />
+      ) : loading && !newCharListLoading ? (
+        <Spinner />
+      ) : (
+        cards
+      )}
       <button
         className="button button__main button__long"
         onClick={() => onRequest(offset)}
