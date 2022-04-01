@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/my-marv-app/static/css/main.0d5e0b23.css",
+    "main.js": "/my-marv-app/static/js/main.8b991381.js",
+    "static/media/error.gif": "/my-marv-app/static/media/error.c3edfe4296927d4a3c7b.gif",
+    "static/media/vision.png": "/my-marv-app/static/media/vision.067d4ae1936d64a577ce.png",
+    "static/media/mjolnir.png": "/my-marv-app/static/media/mjolnir.61f31e1809f12183a524.png",
+    "static/media/Avengers.png": "/my-marv-app/static/media/Avengers.4065c8f9c94e3d8b039a.png",
+    "static/media/Avengers_logo.png": "/my-marv-app/static/media/Avengers_logo.9eaf219344d83362e830.png",
+    "index.html": "/my-marv-app/index.html",
+    "main.0d5e0b23.css.map": "/my-marv-app/static/css/main.0d5e0b23.css.map",
+    "main.8b991381.js.map": "/my-marv-app/static/js/main.8b991381.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0d5e0b23.css",
+    "static/js/main.8b991381.js"
+  ]
+}
