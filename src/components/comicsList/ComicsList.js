@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import useMarvelService from "../../services/MarvelService";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import Spinner from "../spinner/Spinner";
@@ -46,19 +47,17 @@ const ComicsList = () => {
           className="comics__item"
           tabIndex={0}
           ref={(el) => (itemRefs.current[i] = el)}
-          key={comics.id}
+          key={i}
           onClick={() => {
-            // props.getComicsId(comics.id);
             focusOnItem(i);
           }}
           onKeyPress={(e) => {
             if (e.key === " " || e.key === "Enter") {
-              //   props.getComicsId(comics.id);
               focusOnItem(i);
             }
           }}
         >
-          <a href="">
+          <Link to={`${comics.id}`}>
             {" "}
             <img
               className="comics__item-img"
@@ -73,7 +72,7 @@ const ComicsList = () => {
             />
             <div className="comics__item-name">{comics.title}</div>
             <div className="comics__item-price">{comics.price} </div>
-          </a>
+          </Link>
         </li>
       );
     });
